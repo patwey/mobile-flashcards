@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 function Deck({ deck, navigation }) {
   const { id, title, questions } = deck;
@@ -10,8 +11,10 @@ function Deck({ deck, navigation }) {
   };
 
   const visitQuiz = () => {
+    clearLocalNotification()
+      .then(setLocalNotification);
     navigation.navigate('Quiz', { deckId: id });
-  }
+  };
 
   return (
     <View style={styles.center}>

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
+import { setLocalNotification } from './utils/helpers';
 import DeckList from './components/DeckList';
 import Deck from './components/Deck';
 import AddCardForm from './components/AddCardForm';
@@ -30,6 +31,10 @@ const AppNavigator = createStackNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
